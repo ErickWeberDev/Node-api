@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Painel local para testar a API de usuarios e produtos."
+    />
+    <title>API Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">LOCAL API CONSOLE</p>
+          <h1>Controle de dados</h1>
+          <p class="subtitle">
+            Teste sua API com clareza, direto do navegador.
+          </p>
+        </div>
+        <span class="api-status"
+          ><span class="status-dot"></span>API local</span
+        >
+      </header>
+
+      <main class="main-content">
+        <div
+          id="app-feedback"
+          class="feedback is-hidden"
+          role="status"
+          aria-live="polite"
+        ></div>
+        <section
+          class="view-panel"
+          id="users-view"
+          aria-labelledby="users-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">GERENCIAMENTO</p>
+              <h2 id="users-title">Usuários</h2>
+            </div>
+            <div class="section-actions">
+              <button
+                class="button button-primary"
+                type="button"
+                data-modal="add-user-modal"
+              >
+                Adicionar usuário
+              </button>
+              <button
+                class="button button-secondary"
+                type="button"
+                data-modal="delete-user-modal"
+              >
+                Deletar usuário
+              </button>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="table-header">
+              <span>Usuário</span><span>E-mail</span><span>Telefone</span
+              ><span>ID</span>
+            </div>
+            <div class="empty-state">Nenhum usuário carregado.</div>
+          </div>
+        </section>
+
+        <section
+          class="view-panel is-hidden"
+          id="products-view"
+          aria-labelledby="products-title"
+        >
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">GERENCIAMENTO</p>
+              <h2 id="products-title">Produtos</h2>
+            </div>
+            <div class="section-actions">
+              <button
+                class="button button-primary"
+                type="button"
+                data-modal="add-product-modal"
+              >
+                Adicionar produto
+              </button>
+              <button
+                class="button button-secondary"
+                type="button"
+                data-modal="delete-product-modal"
+              >
+                Deletar produto
+              </button>
+            </div>
+          </div>
+          <div class="table-card">
+            <div class="table-header">
+              <span>Produto</span><span>Preço</span><span>Usuário</span
+              ><span>ID</span>
+            </div>
+            <div class="empty-state">Nenhum produto carregado.</div>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegação principal">
+        <button class="nav-item is-active" type="button" data-view="users-view">
+          <span class="nav-icon" aria-hidden="true">01</span>
+          <span>Usuários</span>
+        </button>
+        <button class="nav-item" type="button" data-view="products-view">
+          <span class="nav-icon" aria-hidden="true">02</span>
+          <span>Produtos</span>
+        </button>
+      </nav>
+    </div>
+
+    <div
+      class="modal-layer is-hidden"
+      id="add-user-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-user-title"
+    >
+      <div class="modal-card">
+        <button class="modal-close" type="button" aria-label="Fechar modal">
+          &times;
+        </button>
+        <p class="section-kicker">NOVO REGISTRO</p>
+        <h2 id="add-user-title">Adicionar usuário</h2>
+        <form>
+          <label for="user-name">Nome</label
+          ><input
+            id="user-name"
+            name="name"
+            type="text"
+            placeholder="Nome completo"
+            required
+          />
+          <label for="user-email">E-mail</label
+          ><input
+            id="user-email"
+            name="email"
+            type="email"
+            placeholder="voce@exemplo.com"
+            required
+          />
+          <label for="user-number">Número</label
+          ><input
+            id="user-number"
+            name="number"
+            type="tel"
+            placeholder="(00) 00000-0000"
+            required
+          />
+          <div class="modal-actions">
+            <button class="button button-secondary" type="button">
+              Cancelar</button
+            ><button class="button button-primary" type="submit">
+              Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="modal-layer is-hidden"
+      id="delete-user-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-user-title"
+    >
+      <div class="modal-card modal-card-compact">
+        <button class="modal-close" type="button" aria-label="Fechar modal">
+          &times;
+        </button>
+        <p class="section-kicker">AÇÃO IRREVERSÍVEL</p>
+        <h2 id="delete-user-title">Deletar usuário</h2>
+        <form>
+          <label for="delete-user-id">ID do usuário</label
+          ><input
+            id="delete-user-id"
+            name="id"
+            type="number"
+            min="1"
+            placeholder="Ex.: 1"
+            required
+          />
+          <div class="modal-actions">
+            <button class="button button-secondary" type="button">
+              Cancelar</button
+            ><button class="button button-danger" type="submit">Deletar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="modal-layer is-hidden"
+      id="add-product-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="add-product-title"
+    >
+      <div class="modal-card">
+        <button class="modal-close" type="button" aria-label="Fechar modal">
+          &times;
+        </button>
+        <p class="section-kicker">NOVO REGISTRO</p>
+        <h2 id="add-product-title">Adicionar produto</h2>
+        <form>
+          <label for="product-name">Nome</label
+          ><input
+            id="product-name"
+            name="name"
+            type="text"
+            placeholder="Nome do produto"
+            required
+          /><label for="product-price">Preço</label
+          ><input
+            id="product-price"
+            name="price"
+            type="number"
+            min="0"
+            step="0.01"
+            placeholder="0,00"
+            required
+          /><label for="product-user-id">ID do usuário</label
+          ><input
+            id="product-user-id"
+            name="userId"
+            type="number"
+            min="1"
+            placeholder="Ex.: 1"
+            required
+          />
+          <div class="modal-actions">
+            <button class="button button-secondary" type="button">
+              Cancelar</button
+            ><button class="button button-primary" type="submit">
+              Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div
+      class="modal-layer is-hidden"
+      id="delete-product-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="delete-product-title"
+    >
+      <div class="modal-card modal-card-compact">
+        <button class="modal-close" type="button" aria-label="Fechar modal">
+          &times;
+        </button>
+        <p class="section-kicker">AÇÃO IRREVERSÍVEL</p>
+        <h2 id="delete-product-title">Deletar produto</h2>
+        <form>
+          <label for="delete-product-id">ID do produto</label
+          ><input
+            id="delete-product-id"
+            name="id"
+            type="number"
+            min="1"
+            placeholder="Ex.: 1"
+            required
+          />
+          <div class="modal-actions">
+            <button class="button button-secondary" type="button">
+              Cancelar</button
+            ><button class="button button-danger" type="submit">Deletar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
