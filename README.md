@@ -37,13 +37,6 @@ DATABASE_URL="postgresql://USUARIO:SENHA@HOST:PORTA/BANCO?schema=public"
 
 Substitua `USUARIO`, `SENHA`, `HOST`, `PORTA` e `BANCO` pelos dados do seu banco.
 
-### Antes de publicar no GitHub
-
-- Remova sua senha, usuário e qualquer outra credencial real do `.env`.
-- Nunca publique o arquivo `.env`.
-- Adicione `.env` ao `.gitignore`.
-- Não coloque a `DATABASE_URL` no frontend.
-- Se precisar documentar a configuração, use valores fictícios, como no exemplo acima.
 
 Um `.gitignore` mínimo pode conter:
 
